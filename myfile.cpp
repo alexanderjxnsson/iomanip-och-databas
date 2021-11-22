@@ -30,13 +30,18 @@ struct tInterface{
     void showCus();             //Visar upp individuell kund baserat på id
 }interface;
 struct Customer{
-    
     int cusID;
+    std::string cusName;
+    std::string cusCity;
+    std::string cusState;
     double totalSales;
-    std::string cusName, cusCity, cusState, lastVisit;
+    int lastVisit;
     std::string format_date(int date);       //Datum för input
 }tCus;
-std::vector<Customer> vCus;
+std::vector<Customer> vCus {{0, "Alexander Jonsson", "Malmo", "Skane", 1337, 20211122},
+                            {1, "Adam Kusnierz", "Malmo", "Skane", 1337, 20211122},
+                            {2, "Melina Bertosa", "Malmo", "Skane", 1337, 20211122}
+                            };
 /* declarations end */
 std::fstream myFile;
 
