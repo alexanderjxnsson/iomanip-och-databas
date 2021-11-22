@@ -78,15 +78,15 @@ int main(){
 /* functions start */
 void columnBanner()
 {
-    std::cout<<seperator;
-    std::left;
-    std::cout<<ID<<std::setw(2)<<"|";
-    std::cout<<name<<std::setw(15)<<"|";
-    std::cout<<city<<std::setw(15)<<"|";
-    std::cout<<state<<std::setw(7)<<"|";
-    std::cout<<lastVisit<<std::setw(5)<<"|";
-    std::cout<<totalSales<<"|"<<std::endl;
-    std::cout<<seperator;
+    std::cout<<seperator
+        <<std::right
+        <<ID<<std::setw(2)<<"|"
+        <<name<<std::setw(15)<<"|"
+        <<city<<std::setw(12)<<"|"
+        <<state<<std::setw(7)<<"|"
+        <<lastVisit<<std::setw(5)<<"|"
+        <<totalSales<<"|"<<std::endl
+        <<seperator;
 }
 
 void tInterface::showInterface()
@@ -97,11 +97,11 @@ void tInterface::showInterface()
             std::left
             <<"| "<<std::setw(2)<<vCus[i].cusID+1
             <<" | "<<std::setw(15)<<vCus[i].cusName
-            <<" | "<<std::setw(17)<<vCus[i].cusCity
+            <<" | "<<std::setw(15)<<vCus[i].cusCity
             <<" | "<<std::setw(13)<<vCus[i].cusState
-            <<" | "<<std::setw(11)<<vCus[i].lastVisit
+            <<" | "<<std::setw(8)<<vCus[i].lastVisit
             <<" | "<<std::setw(5)<<vCus[i].totalSales<<" |\n"
-            <<seperator<<std::endl;
+            <<seperator;
     }
     
 /*     std::fstream myFile ("TheFile.csv");
