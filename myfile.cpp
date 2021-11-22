@@ -100,7 +100,8 @@ void tInterface::showInterface()
             <<" | "<<std::setw(17)<<vCus[i].cusCity
             <<" | "<<std::setw(13)<<vCus[i].cusState
             <<" | "<<std::setw(11)<<vCus[i].lastVisit
-            <<" | "<<std::setw(5)<<vCus[i].totalSales<<" |\n";
+            <<" | "<<std::setw(5)<<vCus[i].totalSales<<" |\n"
+            <<seperator<<std::endl;
     }
     
 /*     std::fstream myFile ("TheFile.csv");
