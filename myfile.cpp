@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 /* declarations start */
-std::string seperator = "*==================================================================================*\n";
+std::string seperator = "*==========================================================================================*\n";
 std::string ID = "| ID", name = " Name", city = " City", state = " State", lastVisit = " Last visit", totalSales = " Total sales";
 std::string nameToFile, stateToFile, cityToFile, dateToFile;
 double salesToFile;
@@ -80,11 +80,11 @@ void columnBanner()
 {
     std::cout<<seperator;
     std::left;
-    std::cout<<ID<<std::setw(5)<<"|";
-    std::cout<<name<<std::setw(8)<<"|";
-    std::cout<<city<<std::setw(8)<<"|";
-    std::cout<<state<<std::setw(8)<<"|";
-    std::cout<<lastVisit<<std::setw(8)<<"|";
+    std::cout<<ID<<std::setw(2)<<"|";
+    std::cout<<name<<std::setw(15)<<"|";
+    std::cout<<city<<std::setw(15)<<"|";
+    std::cout<<state<<std::setw(7)<<"|";
+    std::cout<<lastVisit<<std::setw(5)<<"|";
     std::cout<<totalSales<<"|"<<std::endl;
     std::cout<<seperator;
 }
@@ -92,8 +92,15 @@ void columnBanner()
 void tInterface::showInterface()
 {
     for (int i = 0; i < vCus.size(); i++)
-    {
-        std::cout<<vCus[i].cusID<<vCus[i].cusName<<vCus[i].cusCity;
+    {   
+        std::cout<<
+            std::left
+            <<"| "<<std::setw(2)<<vCus[i].cusID+1
+            <<" | "<<std::setw(15)<<vCus[i].cusName
+            <<" | "<<std::setw(17)<<vCus[i].cusCity
+            <<" | "<<std::setw(13)<<vCus[i].cusState
+            <<" | "<<std::setw(11)<<vCus[i].lastVisit
+            <<" | "<<std::setw(5)<<vCus[i].totalSales<<" |\n";
     }
     
 /*     std::fstream myFile ("TheFile.csv");
