@@ -8,7 +8,7 @@ std::string seperator = "*======================================================
 std::string ID = "| ID", name = " Name", city = " City", state = " State", lastVisit = " Last visit", totalSales = " Total sales";
 std::string nameToFile, stateToFile, cityToFile, dateToFile;
 double salesToFile;
-int choice, cusIDtracker = 0;
+int choice, cusIDtracker = 0, choiceOfCus;
 bool isRunning = true;
 enum showOptions {ADD = 1,UPDATECUS, SHOWCUSTOMER, DELETECUSTOMER, SHOWTOTALSALES, EXITPROGRAM};
 void columnBanner();
@@ -25,7 +25,7 @@ struct tInterface{
     void showInterface();       //Visualiserar interface
     void showOptions();         //Visar användarens olika interaktions alternativ
     void AddCus();              //Adderar en ny kund till listan
-    void updateCus();           //Uppdaterar data om valfri kund baserat på id
+    void updateCus(int ID);           //Uppdaterar data om valfri kund baserat på id
     void deleteCus();           //Raderar data om valfri kund baserat på id
     void showCus();             //Visar upp individuell kund baserat på id
 }interface;
@@ -129,7 +129,10 @@ void tInterface::showOptions()
         AddCus();
         break;
     case UPDATECUS:
-        
+        std::cout<<"Which customer do you want to update? ";
+        std::cin>>choiceOfCus;
+        choiceOfCus -= 1;
+        updateCus(choiceOfCus);
         break;
     case SHOWCUSTOMER:
         
@@ -170,7 +173,7 @@ void tInterface::AddCus()
         tCus.cusID = cusIDtracker;
         std::cin>> tCus.lastVisit;
         nameToFile = tCus.cusName;cityToFile = tCus.cusCity;stateToFile = tCus.cusState;salesToFile = tCus.totalSales;dateToFile = tCus.lastVisit;
-        myFile << nameToFile << ", " << cityToFile << ", " << stateToFile << ", " << salesToFile << ", "<< dateToFile<<"\n";
+        myFile << nameToFile << ", " << cityToFile << ", " << stateToFile << ", " << salesToFile << ", "<< dateToFile<<std::endl;
         vCus.push_back(tCus);
         cusIDtracker++;
         std::cout<<"\nThank you, your account has been created!\n";
@@ -181,6 +184,28 @@ void tInterface::AddCus()
     {
         std::cout<<"File is not OK!\n";
     }
+}
+
+void tInterface::updateCus(int ID)
+{
+    std::cin.ignore();
+    std::cout<<"Found customer ID "<<ID+1<<"\n";
+    std::cout<<"Enter new name: (Current name: "<<vCus[ID].cusName<<")";
+    std::getline(std::cin, tCus.cusName);
+    std::cout<<"Enter new city: (Current city: "<<vCus[ID].cusCity<<")";
+    std::getline(std::cin, tCus.cusCity);
+    std::cout<<"Enter new state: (Current state: "<<vCus[ID].cusState<<")";
+    std::getline(std::cin, tCus.cusState);
+    std::cout<<"Enter new sales: (Current state: "<<vCus[ID].totalSales<<")";
+    std::cin>>tCus.totalSales;
+    std::cout<<"Enter new date: (Current state: "<<vCus[ID].lastVisit<<")";
+    std::cin>>tCus.lastVisit;
+    vCus[ID].cusName = tCus.cusName;
+    vCus[ID].cusCity = tCus.cusCity;
+    vCus[ID].cusState = tCus.cusState;
+    vCus[ID].totalSales = tCus.totalSales;
+    vCus[ID].lastVisit = tCus.lastVisit;
+    system("cls");
 }
 
 double tTable::get_total_sales()
